@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <script>
+    Office.initialize = function () {};
+
+    function stampDocument(event) {
+      var today = new Date();
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var dd = String(today.getDate()).padStart(2, '0');
+      var yyyy = today.getFullYear();
+      var dateStr = mm + dd + yyyy;
+
+      Word.run(function (ctx) {
+        var footer = ctx.document.sections.getFirst().getFooter('primary');
+        footer.insertText(dateStr, 'Replace');
+        return ctx.sync();
+      }).then(function () {
+        Office.context.ui.displayDialogAsync(
+          'https://jzhanggsms.github.io/nd-stamper/popup.html',
+          { height: 25, width: 25, displayInIframe: true },
+          function () { event.completed(); }
+        );
+      }).catch(function () {
+        event.completed();
+      });
+    }
+
+    Office.actions.associate('stampDocument', stampDocument);
+  </script>
+</head>
+<body></body>
+</html>
