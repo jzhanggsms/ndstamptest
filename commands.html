@@ -15,22 +15,25 @@
 
       Word.run(function (ctx) {
         var footer = ctx.document.sections.getFirst().getFooter('primary');
+        var paras = footer.paragraphs;
+        ctx.load(paras, 'items');
 
-        // Clear footer first
-        footer.clear();
+        return ctx.sync().then(function () {
+          // Delete everything except the first paragraph (page number lives there)
+          for (var i = paras.items.length - 1; i >= 1; i--) {
+            paras.items[i].delete();
+          }
 
-        // Line 1: empty line for page number
-        var line1 = footer.insertParagraph('', 'Start');
+          // Line 2: doc number placeholder, font size 6
+          var line2 = footer.insertParagraph('####-####-#### V.#', 'End');
+          line2.font.size = 6;
 
-        // Line 2: doc number placeholder, font size 6
-        var line2 = footer.insertParagraph('####-####-#### V.#', 'End');
-        line2.font.size = 6;
+          // Line 3: date, font size 6
+          var line3 = footer.insertParagraph(dateStr, 'End');
+          line3.font.size = 6;
 
-        // Line 3: date, font size 6
-        var line3 = footer.insertParagraph(dateStr, 'End');
-        line3.font.size = 6;
-
-        return ctx.sync();
+          return ctx.sync();
+        });
       }).then(function () {
         Office.context.ui.displayDialogAsync(
           'https://jzhanggsms.github.io/ndstamptest/popup.html',
