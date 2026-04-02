@@ -58,12 +58,12 @@
     </Hosts>
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon16" DefaultValue="https://jzhanggsms.github.io/nd-stamper/icon16.png" />
-        <bt:Image id="Icon32" DefaultValue="https://jzhanggsms.github.io/nd-stamper/icon32.png" />
-        <bt:Image id="Icon80" DefaultValue="https://jzhanggsms.github.io/nd-stamper/icon80.png" />
+        <bt:Image id="Icon16" DefaultValue="https://jzhanggsms.github.io/ndstamptest/icon16.png" />
+        <bt:Image id="Icon32" DefaultValue="https://jzhanggsms.github.io/ndstamptest/icon32.png" />
+        <bt:Image id="Icon80" DefaultValue="https://jzhanggsms.github.io/ndstamptest/icon80.png" />
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="Commands.Url" DefaultValue="https://jzhanggsms.github.io/nd-stamper/commands.html" />
+        <bt:Url id="Commands.Url" DefaultValue="https://jzhanggsms.github.io/ndstamptest/commands.html" />
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="ND Stamper" />
