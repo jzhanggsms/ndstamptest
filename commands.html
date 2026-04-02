@@ -15,7 +15,21 @@
 
       Word.run(function (ctx) {
         var footer = ctx.document.sections.getFirst().getFooter('primary');
-        footer.insertText(dateStr, 'Replace');
+
+        // Clear footer first
+        footer.clear();
+
+        // Line 1: empty line for page number
+        var line1 = footer.insertParagraph('', 'Start');
+
+        // Line 2: doc number placeholder, font size 6
+        var line2 = footer.insertParagraph('####-####-#### V.#', 'End');
+        line2.font.size = 6;
+
+        // Line 3: date, font size 6
+        var line3 = footer.insertParagraph(dateStr, 'End');
+        line3.font.size = 6;
+
         return ctx.sync();
       }).then(function () {
         Office.context.ui.displayDialogAsync(
