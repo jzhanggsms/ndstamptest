@@ -4,21 +4,75 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:type="TaskPaneApp">
 
-  <Id>1d6b080d-9b60-43c2-b002-fec88781f7c7</Id>
+  <Id>PUT-YOUR-GUID-HERE</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>GSM Law IT</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="ND Stamper Test" />
-  <Description DefaultValue="Testing NetDocuments Document Number Stamper" />
+  <DisplayName DefaultValue="ND Stamper" />
+  <Description DefaultValue="NetDocuments Document Number Stamper" />
 
   <Hosts>
     <Host Name="Document" />
   </Hosts>
 
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://jzhanggsms.github.io/ndstamptest/taskpane.html" />
+    <SourceLocation DefaultValue="https://jzhanggsms.github.io/nd-stamper/taskpane.html" />
   </DefaultSettings>
 
   <Permissions>ReadWriteDocument</Permissions>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <FunctionFile resid="Commands.Url" />
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="NDStamperGroup">
+                <Label resid="GroupLabel" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon16" />
+                  <bt:Image size="32" resid="Icon32" />
+                  <bt:Image size="80" resid="Icon80" />
+                </Icon>
+                <Control xsi:type="Button" id="StampBtn">
+                  <Label resid="ButtonLabel" />
+                  <Supertip>
+                    <Title resid="ButtonLabel" />
+                    <Description resid="ButtonTip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon16" />
+                    <bt:Image size="32" resid="Icon32" />
+                    <bt:Image size="80" resid="Icon80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>stampDocument</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon16" DefaultValue="https://jzhanggsms.github.io/nd-stamper/icon16.png" />
+        <bt:Image id="Icon32" DefaultValue="https://jzhanggsms.github.io/nd-stamper/icon32.png" />
+        <bt:Image id="Icon80" DefaultValue="https://jzhanggsms.github.io/nd-stamper/icon80.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Commands.Url" DefaultValue="https://jzhanggsms.github.io/nd-stamper/commands.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="GroupLabel" DefaultValue="ND Stamper" />
+        <bt:String id="ButtonLabel" DefaultValue="Stamp Document" />
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="ButtonTip" DefaultValue="Stamps the document footer with today's date" />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
 
 </OfficeApp>
